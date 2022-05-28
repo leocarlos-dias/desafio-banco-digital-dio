@@ -45,17 +45,25 @@ public class Banco {
         listar(conta01, conta02, conta03, conta04);
 
         while (true) {
-            System.out.println("Qual operacao deseja realizar?");
-            System.out.println("1 - Depositar   \n2 - Sacar   \n3 - Transferir \n4 - Sair \nTotal de Contas: " + Conta.getTotal());
-            System.out.print("Operacao: ");
+            System.out.println("Qual operacao deseja realizar?\n");
+            System.out.println("1 - Depositar   \n2 - Sacar   \n3 - Transferir \n4 - Sair");
+            System.out.print("\nDigite o numero da operacao: ");
             int operacao = scanner.nextInt();
             System.out.println("");
 
             if (operacao == 4) break;
 
+            if (operacao == 3)
+                System.out.println("\nATENCAO: Transferencia permitida somente entre contas do mesmo tipo\n Ex.: CC > CC / CP > CP\n");
+
             System.out.print("Digite o numero da sua conta: ");
             int conta = scanner.nextInt();
-            System.out.println("");
+            while (conta > 4) {
+                System.out.println("Conta invalida");
+                System.out.print("Digite o numero da sua conta: ");
+                conta = scanner.nextInt();
+            }
+
 
             double valor;
             if (conta == 1) {
@@ -123,16 +131,21 @@ public class Banco {
                     System.out.println("Operacao invalida!");
                 }
             }
+
             System.out.println("");
             listar(conta01, conta02, conta03, conta04);
-            System.out.println("");
+            System.out.println("\nDeseja realizar outra operacao?");
+            System.out.print("1 - SIM  2 - NAO\n");
+            int resposta = scanner.nextInt();
+            if (resposta == 2) {
+                System.out.println("ATE LOGO!");
+                break;
+            }
         }
-
     }
 
     private static void listar(Conta conta01, Conta conta02, ContaPoupanca conta03, ContaPoupanca conta04) {
-        System.out.println("CONTA 01:");
-        System.out.println("Titular: " + conta01.cliente.getNome());
+        System.out.println("CONTA 01: Titular = " + conta01.cliente.getNome());
         System.out.print("Conta Corrente: ");
         System.out.print("Agencia: " + conta01.getAgencia());
         System.out.print(" - Numero: " + conta01.getNumero());
@@ -144,8 +157,7 @@ public class Banco {
 
         System.out.println("");
 
-        System.out.println("CONTA 02:");
-        System.out.println("Titular: " + conta02.cliente.getNome());
+        System.out.println("CONTA 02: Titular = " + conta02.cliente.getNome());
         System.out.print("Conta Corrente: ");
         System.out.print("Agencia: " + conta02.getAgencia());
         System.out.print(" - Numero: " + conta02.getNumero());

@@ -34,27 +34,36 @@ public abstract class Conta implements iConta {
 
     @Override
     public void sacar(double valor) {
-        boolean resultado = (this.saldo - valor) < 0;
-        if (resultado == false){
+        boolean saldoAposTransacao = (this.saldo - valor) > 0;
+        boolean valorNegativo = (valor < 0);
+
+        if (!saldoAposTransacao && !valorNegativo) {
+            System.out.println("Saldo insuficiente");
+        } else {
             this.saldo -= valor;
         }
-        System.out.println("Saldo insuficiente");
     }
 
     @Override
     public void depositar(double valor) {
-        this.saldo += valor;
+        boolean valorPositivo = (valor > 0);
+        if (!valorPositivo) {
+            System.out.println("Verifique o valor de deposito");
+        } else {
+            this.saldo += valor;
+        }
     }
 
     @Override
     public void transferir(double valor, Conta contaDestino) {
-        boolean resultado = (this.saldo - valor) < 0;
-
-        if (resultado == false){
+        boolean saldoAposTransacao = (this.saldo - valor) > 0;
+        boolean valorPositivo = (valor > 0);
+        if (!saldoAposTransacao && !valorPositivo) {
+            System.out.println("Saldo insuficiente");
+        } else {
             this.saldo -= valor;
             contaDestino.saldo += valor;
         }
-        System.out.println("Saldo insuficiente");
     }
 
 
