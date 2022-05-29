@@ -2,9 +2,14 @@ package banco_bank_innovation.cliente;
 
 import banco_bank_innovation.conta.Conta;
 
+import java.util.ArrayList;
+
 public class Cliente {
-    public String nome;
-    public String cpf;
+
+    private String nome;
+    private String cpf;
+
+    private Conta conta;
 
     public String getNome() {
         return nome;
@@ -20,5 +25,13 @@ public class Cliente {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public Conta getConta() {
+        return conta;
+    }
+
+    public void setConta(Conta conta) {
+        this.conta = conta;
     }
 }
